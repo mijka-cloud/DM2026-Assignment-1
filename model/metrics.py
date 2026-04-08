@@ -33,19 +33,18 @@ def evaluate_linear_regression(y_true, y_pred, title='Linear Regression Evaluati
     y_true = np.asarray(y_true).ravel()
     y_pred = np.asarray(y_pred).ravel()
 
-    # TODO 
-    metrics = {
-        'MSE': 'TODO: use sklearn.metrics to compute MSE',
-        'MAE': 'TODO: use sklearn.metrics to compute MAE',
-        'RMSE': 'TODO: use sklearn.metrics and numpy to compute RMSE',
-        'R-squared': 'TODO: use sklearn.metrics to compute R-squared',
+    results = {
+        'MSE': mean_squared_error(y_true, y_pred),
+        'MAE': mean_absolute_error(y_true, y_pred),
+        'RMSE': np.sqrt(mean_squared_error(y_true, y_pred)),
+        'R-squared': r2_score(y_true, y_pred),
     }
 
     print(f"=== {title} ===")
-    for name, value in metrics.items():
-        print(f'{name:<10}: {value:.4f}')
+    for name, value in results.items():
+        print(f"{name:<10}: {value:.4f}")
 
-    return metrics
+    return results
 
 # Here is the evalution function for logistic regression
 def evaluate_binary_classifier(y_true, y_pred, title='Model Evaluation'):
